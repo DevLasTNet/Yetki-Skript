@@ -1,0 +1,83 @@
+# YETKİ SKRİPTİ by DevLasTNet
+# ÜST SÜRÜMLERDE HATASIZ ÇALIŞMAKTADIR,HATASIZ KULLANIM İÇİN ÜST SÜRÜMLERİ TERCİH EDİNİZ
+
+# Sunucunuzdaki Grupları direk sistem oto almıyor. Sunucunuzdaki Grupları aşağıdaki örnekler gibi yazınız. 
+# Grup adlarını direk LuckPerms de yazdığı gibi yazınız.
+on script load:
+    # Geçerli rütbelerin listesini oluştur.
+    clear {valid_ranks::*}
+    add "kurucu" to {valid_ranks::*}
+    add "moderatör" to {valid_ranks::*}
+    add "rehber" to {valid_ranks::*}
+    add "oyuncu" to {valid_ranks::*}
+
+command /yetkiver [<player>] [<text>]:
+    trigger:
+        if player has permission "yetki.verme":
+            if arg-1 is not set:
+                send "&cKullanım: /yetkiver <oyuncu> <yetki>" to player
+                stop
+            if arg-2 is not set:
+                send "&cKullanım: /yetkiver <oyuncu> <yetki>" to player
+                stop
+
+            if {valid_ranks::*} does not contain arg-2:
+                send "&cBöyle bir grup bulunamadı!" to player
+                stop
+            
+            execute console command "lp user %arg-1% parent add %arg-2%"
+            
+            # Yetki değişimini log dosyasına kaydet
+            set {_log_entry} to "&7[&a+&7] &6%player% &aoyuncusuna &e%arg-2% &arütbesini verdi! &8(%now%)"
+            add {_log_entry} to {yetki_log::*}
+            
+            send "&a%arg-1% isimli oyuncuya &e%arg-2% &ayetkisi verildi!" to player
+        else:
+            send "&cBu komutu kullanmak için yetkiniz yok!" to player
+
+command /yetkial [<player>] [<text>]:
+    trigger:
+        if player has permission "yetki.al":
+            if arg-1 is not set:
+                send "&cKullanım: /yetkial <oyuncu> <yetki>" to player
+                stop
+            if arg-2 is not set:
+                send "&cKullanım: /yetkial <oyuncu> <yetki>" to player
+                stop
+
+            if {valid_ranks::*} does not contain arg-2:
+                send "&cBöyle bir grup bulunamadı!" to player
+                stop
+
+            execute console command "lp user %arg-1% parent remove %arg-2%"
+            
+            # Yetki değişimini log dosyasına kaydet
+            set {_log_entry} to "&7[&c-&7] &6%player% &coyuncudan &e%arg-2% &crütbesini aldı! &8(%now%)"
+            add {_log_entry} to {yetki_log::*}
+            
+            send "&c%arg-1% isimli oyuncudan &e%arg-2% &cyetkisi alındı!" to player
+        else:
+            send "&cBu komutu kullanmak için yetkiniz yok!" to player
+
+command /yetkilog:
+    trigger:
+        if player has permission "yetki.log.görme":
+            send ""
+            send "&6Yetki Değişim Kayıtları:"
+            send "&7--------------------"
+            set {_log_count} to 0
+            set {_index} to size of {yetki_log::*}
+            
+            while {_index} is greater than 0:
+                if {_log_count} >= 10:
+                    stop loop
+                if {yetki_log::%{_index}%} is not "":
+                    send {yetki_log::%{_index}%}
+                    add 1 to {_log_count}
+                remove 1 from {_index}
+                
+            send "&7--------------------"
+            send ""
+        else:
+            send "&cBu komutu kullanmak için yetkiniz yok!" to player
+		
