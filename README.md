@@ -6,9 +6,13 @@ Sunucunuzda yetkileri yönetmenin kolay ve etkili yolu! 👑💼
 
 ✨ Özellikler
 🟢 Yetki verme: /yetkiver <oyuncu> <rütbe> ile oyunculara rütbe verebilirsiniz.
+
 🔴 Yetki alma: /yetkial <oyuncu> <rütbe> ile rütbeleri geri alabilirsiniz.
+
 📜 Log sistemi: /yetkilog ile son yetki değişimini görebilirsiniz.
+
 💻 Konsol entegrasyonu: LuckPerms ile tam uyumlu, komutları otomatik uygular.
+
 👀 Yetkili kontrolü: Sadece yetkili oyuncular komutları kullanabilir, güvenli yönetim sağlar.
 
 🛠️ Kurulum
