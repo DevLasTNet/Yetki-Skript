@@ -14,7 +14,7 @@ Sunucunuzda yetkileri yönetmenin kolay ve etkili yolu! 👑💼
 
 ## 🛠️ Kurulum
 1. Skripti sunucunuzun `plugins/Skript/scripts` klasörüne koyun.  
-2. Sunucunuzu yeniden başlatın veya `/skript reload yetki-sistemi.sk` komutunu kullanın.  
+2. Sunucunuzu yeniden başlatın veya `/skript reload yetki.sk` komutunu kullanın.  
 3. 🎉 Artık sunucunuzda pratik ve güvenli bir yetki sistemi var!  
 
 ---
