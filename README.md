@@ -1,4 +1,4 @@
-# 🔥 Minecraft Yetki Yönetim Sistemi - DevLasTNet V1 🔥
+# 🔥 Minecraft Yetki Yönetim Sistemi - DevLasTNet 🔥
 Sunucunuzda yetkileri yönetmenin kolay ve etkili yolu! 👑💼  
 
 ---
